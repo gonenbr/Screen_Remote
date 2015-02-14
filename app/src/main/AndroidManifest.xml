@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.limitscreen.www.viewpager" >
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="Screen"
+        android:theme="@style/AppTheme" >
+        <!-- Splash screen -->
+        <activity
+        android:name="com.limitscreen.www.viewpager.SplashScreen"
+        android:label="Screen"
+        android:screenOrientation="portrait"
+        android:theme="@android:style/Theme.Black.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+ 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+    </activity>
+        <activity
+            android:name="com.limitscreen.www.viewpager.MainActivity"
+            android:label="Screen"
+            >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.limitscreen.www.viewpager.ScheduleActivity"
+            android:label="Screen"
+            >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

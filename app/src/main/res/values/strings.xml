@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">viewpager</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="family_time">Family time</string>
+    <string name="parents_time">Parents time</string>
+    <string name="add_remove_device">Add/Remove device</string>
+    <string name="settings">Settings</string>
+
+    <string-array name="device_options_array">
+        <item>Shut Down</item>
+        <item>Add Time</item>
+        <item>Set Schedule</item>
+        <item>Limit Content</item>
+
+    </string-array>
+
+</resources>

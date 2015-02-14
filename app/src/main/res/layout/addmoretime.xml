@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|left">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add extra"
+            android:id="@+id/textView"
+            android:paddingRight="10dp"
+            android:layout_marginLeft="10dp" />
+
+        <EditText
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/edit_text_add_extra_minutes"
+            android:numeric="integer"
+            android:singleLine="false"
+            android:text="30"
+            android:background="@drawable/text_box"
+            android:paddingLeft="10dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Minutes"
+            android:id="@+id/textView2"
+            android:paddingLeft="10dp" />
+    </LinearLayout>
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBar_addextra"
+        android:layout_marginTop="8dp"
+        android:progress="30"
+        android:max="120"
+        android:progressDrawable="@drawable/seekbar"
+        android:thumb="@drawable/seelbar_thumb"
+        android:maxHeight="3dp" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/edit_box_add_more_time_message"
+        android:background="@drawable/text_box"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:text="You earned extra time"
+        android:textSize="14dp"
+        android:gravity="top"
+        android:paddingLeft="10dp"
+        android:paddingTop="4dp" />
+    <com.limitscreen.www.viewpager.ClearableEditText
+        android:id="@+id/clearable_edit_text_message_to_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.limitscreen.www.viewpager.ClearableEditText>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:id="@+id/button_cancel"
+            android:layout_weight="0.5"
+            android:background="@drawable/buttons"
+            android:textColor="#5C5858"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Apply"
+            android:id="@+id/button_apply"
+            android:layout_weight="0.5"
+            android:background="@drawable/buttons"
+            android:textColor="#5C5858"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp" />
+    </LinearLayout>
+
+</LinearLayout>

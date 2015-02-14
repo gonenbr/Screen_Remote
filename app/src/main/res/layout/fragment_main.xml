@@ -1,0 +1,49 @@
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="wrap_content"
+    android:layout_height="wrap_content" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    tools:context=".MainActivity$PlaceholderFragment"
+    android:columnCount="3"
+    android:rowCount="2"
+    android:useDefaultMargins="true">
+    <com.limitscreen.www.viewpager.Circularinfo
+        android:id="@+id/device1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        </com.limitscreen.www.viewpager.Circularinfo>
+    <com.limitscreen.www.viewpager.Circularinfo
+        android:id="@+id/device5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </com.limitscreen.www.viewpager.Circularinfo>
+    <com.limitscreen.www.viewpager.Circularinfo
+        android:id="@+id/device3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </com.limitscreen.www.viewpager.Circularinfo>
+    <com.limitscreen.www.viewpager.Circularinfo
+        android:id="@+id/device4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </com.limitscreen.www.viewpager.Circularinfo>
+    <com.limitscreen.www.viewpager.Circularinfo
+        android:id="@+id/device2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </com.limitscreen.www.viewpager.Circularinfo>
+    <com.limitscreen.www.viewpager.Circularinfo
+        android:id="@+id/device6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </com.limitscreen.www.viewpager.Circularinfo>
+
+
+</GridLayout>

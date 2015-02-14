@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_height="0dp"
+    android:layout_width="match_parent"
+    android:background="@drawable/tv3grey"
+    android:gravity="center"
+    android:layout_weight=".9">
+
+
+    <Space
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.24" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent" android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight=".9">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.042" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/imageView"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_weight="0.6" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.040" />
+
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".36" />
+
+
+</LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="test"
+        android:id="@+id/devicenamecaptureimage"
+        android:textSize="14dp"
+        android:layout_weight="0.2"
+        android:gravity="center"
+        android:textColor="#605d4c" />
+</LinearLayout>

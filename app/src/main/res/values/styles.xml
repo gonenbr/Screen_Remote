@@ -1,0 +1,27 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:actionBarStyle">@style/action_bar_style</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:actionOverflowButtonStyle">@style/OverFlow</item>
+        <!--<item name="android:background">#D0D1C9</item>-->
+
+    </style>
+    <style name="action_bar_style" parent="android:Widget.Holo.ActionBar">
+        <item name="android:background">
+            @drawable/actionbardrawable
+        </item>
+        <!--<item name="android:label">What are the kids up to?</item>-->
+    </style>
+    <!--<style name="OverFlow" parent="@android:style/Widget.Holo.ActionButton.Overflow">-->
+    <style name="OverFlow">
+        <item name="android:src">@drawable/menuflow</item>
+    </style>
+    <style name="alert_dialog" parent="android:Widget.Material.Light.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/Spurple</item>
+    </style>
+
+
+</resources>

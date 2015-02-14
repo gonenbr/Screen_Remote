@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="35dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/textView7"
+            android:layout_weight="0.15"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.225"
+            android:layout_height="match_parent"
+            android:text="START"
+            android:id="@+id/textView4"
+            android:gravity="center"
+            android:layout_marginRight="20dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.225"
+            android:layout_height="match_parent"
+            android:text="END"
+            android:id="@+id/textView5"
+            android:gravity="center"
+            android:layout_marginRight="20dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.175"
+            android:layout_height="match_parent"
+            android:text="QUOTA"
+            android:id="@+id/textView6"
+            android:gravity="center"
+            android:layout_marginRight="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="35dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Mon"
+            android:id="@+id/textView3"
+            android:layout_weight="0.15"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/d2s"
+            android:text="12 PM"
+            android:layout_weight="0.225"
+            android:background="@drawable/text_box"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:onClick="showTimePickerDialog"
+            android:textSize="18dp" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/d2e"
+            android:text="16 PM"
+            android:layout_weight="0.225"
+            android:background="@drawable/text_box"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:onClick="showTimePickerDialog"
+            android:textSize="18dp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/d2q"
+            android:text="1"
+            android:layout_weight="0.175"
+            android:background="@drawable/text_box"
+            android:gravity="center"
+            android:layout_marginRight="20dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Tue"
+            android:id="@+id/textView3"
+            android:layout_weight="0.15"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/d3s"
+            android:text="12 PM"
+            android:layout_weight="0.225"
+            android:background="@drawable/text_box"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:onClick="showTimePickerDialog"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/d3e"
+            android:text="16 PM"
+            android:layout_weight="0.225"
+            android:background="@drawable/text_box"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:onClick="showTimePickerDialog"
+            android:textSize="18dp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/d3q"
+            android:text="1"
+            android:layout_weight="0.175"
+            android:background="@drawable/text_box"
+            android:gravity="center"
+            android:layout_marginRight="20dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Wed"
+            android:id="@+id/textView3"
+            android:layout_weight="0.15"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/d4s"
+            android:text="12 AM"
+            android:layout_weight="0.225"
+            android:background="@drawable/text_box"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:onClick="showTimePickerDialog"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/d4e"
+            android:text="16 PM"
+            android:layout_weight="0.225"
+            android:background="@drawable/text_box"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:onClick="showTimePickerDialog"
+            android:textSize="18dp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/d4q"
+            android:text="1"
+            android:layout_weight="0.175"
+            android:background="@drawable/text_box"
+            android:gravity="center"
+            android:layout_marginRight="20dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Thu"
+            android:id="@+id/textView3"
+            android:layout_weight="0.15"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/d5s"
+            android:text="12 PM"
+            android:layout_weight="0.225"
+            android:background="@drawable/text_box"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:onClick="showTimePickerDialog"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/d5e"
+            android:text="16 PM"
+            android:layout_weight="0.225"
+            android:background="@drawable/text_box"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:onClick="showTimePickerDialog"
+            android:textSize="18dp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/d5q"
+            android:text="1"
+            android:layout_weight="0.175"
+            android:background="@drawable/text_box"
+            android:gravity="center"
+            android:layout_marginRight="20dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Fri"
+            android:id="@+id/textView3"
+            android:layout_weight="0.15"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/d6s"
+            android:text="12 PM"
+            android:layout_weight="0.225"
+            android:background="@drawable/text_box"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:onClick="showTimePickerDialog"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/d6e"
+            android:text="16 PM"
+            android:layout_weight="0.225"
+            android:background="@drawable/text_box"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:onClick="showTimePickerDialog"
+            android:textSize="18dp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/d6q"
+            android:text="1"
+            android:layout_weight="0.175"
+            android:background="@drawable/text_box"
+            android:gravity="center"
+            android:layout_marginRight="20dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Sat"
+            android:id="@+id/textView3"
+            android:layout_weight="0.15"
+            android:gravity="center"
+            android:textColor="@color/Spurple" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/d7s"
+            android:text="12 PM"
+            android:layout_weight="0.225"
+            android:background="@drawable/textboxweekend"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:onClick="showTimePickerDialog"
+            android:textSize="18dp"
+            android:textColor="@color/Spurple" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/d7e"
+            android:text="16 PM"
+            android:layout_weight="0.225"
+            android:background="@drawable/textboxweekend"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:onClick="showTimePickerDialog"
+            android:textSize="18dp"
+            android:textColor="@color/Spurple" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/d7q"
+            android:text="1"
+            android:layout_weight="0.175"
+            android:background="@drawable/textboxweekend"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/Spurple" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Sun"
+            android:id="@+id/textView3"
+            android:layout_weight="0.15"
+            android:gravity="center"
+            android:textColor="@color/Spurple" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/d1s"
+            android:text="12 PM"
+            android:layout_weight="0.225"
+            android:background="@drawable/textboxweekend"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:onClick="showTimePickerDialog"
+            android:textSize="18dp"
+            android:textColor="@color/Spurple" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/d1e"
+            android:text="16 PM"
+            android:layout_weight="0.225"
+            android:background="@drawable/textboxweekend"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:onClick="showTimePickerDialog"
+            android:textSize="18dp"
+            android:textColor="@color/Spurple" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/d1q"
+            android:text="1"
+            android:layout_weight="0.175"
+            android:background="@drawable/textboxweekend"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/Spurple" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Apply To Other Devices"
+        android:id="@+id/buttonApplytoallDevices"
+        android:layout_gravity="right"
+        android:background="@drawable/buttons"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:id="@+id/buttoncancelschedule"
+            android:layout_weight="1"
+            android:background="@drawable/buttons"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="30dp" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Apply"
+            android:id="@+id/buttonapplyschedule"
+            android:layout_weight="1"
+            android:background="@drawable/buttons"
+            android:layout_marginRight="10dp" />
+    </LinearLayout>
+
+
+
+</LinearLayout>
