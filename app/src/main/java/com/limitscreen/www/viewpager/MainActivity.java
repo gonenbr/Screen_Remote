@@ -181,7 +181,7 @@ public class MainActivity extends FragmentActivity /*implements ActionBar.TabLis
 
     }
 
-    private void InitDevicesData() {
+    public void InitDevicesData() {
         Family_Devices[0].Device_name="Main TV";
         Family_Devices[0].Is_available=true;
         Family_Devices[0].Is_selected_for_current_operation=false;
@@ -409,25 +409,18 @@ public class MainActivity extends FragmentActivity /*implements ActionBar.TabLis
                    public boolean onTouch(View v, MotionEvent event) {
                        Circularinfo cir;
                        GridLayout grid = (GridLayout)v.getParent();
-                       int number_of_children = grid.getChildCount();
-                       for (int index=0;index<number_of_children;index++)
-                       {
-                           cir = (Circularinfo)grid.getChildAt(index);
-                           cir.Selectdevice(false);
-                       }
-                       ((Circularinfo)v).Selectdevice(true);
-                       FireMissilesDialogFragment misile = new FireMissilesDialogFragment();
-//
-                       Bundle bundi = new Bundle();
-                       ((MainActivity)getActivity()).device_selected = 0;
-                       ((MainActivity)getActivity()).Family_Devices[0].Is_selected_for_current_operation=true;
-                       bundi.putInt("device_selected",0);
-//                       bundi.putSerializable("context",getActivity().getApplicationContext());
-//                       misile.setArguments(bundi);
-                       misile.app_context = getActivity().getApplicationContext();
-                       misile.setArguments(bundi);
+                       FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        if(fragmentManager.getBackStackEntryCount()==0) {
+                            ResetDevicesToUnSelected(grid);
+                        }
+                       SetDeviceVisabiltyAndActionFlag((Circularinfo) v,0);
+                       // ((Circularinfo)v).Selectdevice(true);
 
-                       misile.show(getFragmentManager(), "test");
+//
+
+                       ((MainActivity)getActivity()).device_selected = 0;
+
+                       StartDialogForActionsOnDevicesClicked();
 //                       if(misile.was_canceled)
 //                       {
 //                           for (int index=0;index<number_of_children;index++)
@@ -460,26 +453,18 @@ public class MainActivity extends FragmentActivity /*implements ActionBar.TabLis
                     public boolean onTouch(View v, MotionEvent event) {
                         Circularinfo cir;
                         GridLayout grid = (GridLayout)v.getParent();
-                        int number_of_children = grid.getChildCount();
-                        for (int index=0;index<number_of_children;index++)
-                        {
-                            cir = (Circularinfo)grid.getChildAt(index);
-                            cir.Selectdevice(false);
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        if(fragmentManager.getBackStackEntryCount()==0) {
+                            ResetDevicesToUnSelected(grid);
                         }
-                        ((Circularinfo)v).Selectdevice(true);
-                        FireMissilesDialogFragment misile = new FireMissilesDialogFragment();
+                        SetDeviceVisabiltyAndActionFlag((Circularinfo) v,0);
+                        // ((Circularinfo)v).Selectdevice(true);
+
 //
-                        Bundle bundi = new Bundle();
+
                         ((MainActivity)getActivity()).device_selected = 0;
-                        ((MainActivity)getActivity()).Family_Devices[0].Is_selected_for_current_operation=true;
 
-                        bundi.putInt("device_selected",0);
-//                       bundi.putSerializable("context",getActivity().getApplicationContext());
-//                       misile.setArguments(bundi);
-                        misile.app_context = getActivity().getApplicationContext();
-                        misile.setArguments(bundi);
-
-                        misile.show(getFragmentManager(), "test");
+                        StartDialogForActionsOnDevicesClicked();
 //                       if(misile.was_canceled)
 //                       {
 //                           for (int index=0;index<number_of_children;index++)
@@ -496,6 +481,44 @@ public class MainActivity extends FragmentActivity /*implements ActionBar.TabLis
 //                       }
 
                         return false;
+//                        Circularinfo cir;
+//                        GridLayout grid = (GridLayout)v.getParent();
+//                        int number_of_children = grid.getChildCount();
+//                        for (int index=0;index<number_of_children;index++)
+//                        {
+//                            cir = (Circularinfo)grid.getChildAt(index);
+//                            cir.Selectdevice(false);
+//                        }
+//                        ((Circularinfo)v).Selectdevice(true);
+//                        FireMissilesDialogFragment misile = new FireMissilesDialogFragment();
+////
+//                        Bundle bundi = new Bundle();
+//                        ((MainActivity)getActivity()).device_selected = 0;
+//                        ((MainActivity)getActivity()).Family_Devices[0].Is_selected_for_current_operation=true;
+//
+//                        bundi.putInt("device_selected",0);
+////                       bundi.putSerializable("context",getActivity().getApplicationContext());
+////                       misile.setArguments(bundi);
+//                        misile.app_context = getActivity().getApplicationContext();
+//                        misile.setArguments(bundi);
+//
+//                        misile.show(getFragmentManager(), "test");
+////                       if(misile.was_canceled)
+////                       {
+////                           for (int index=0;index<number_of_children;index++)
+////                           {
+////                               cir = (Circularinfo)grid.getChildAt(index);
+////                               cir.SetNotOffline(false);
+//////                               cir = (Circularinfo)grid.getChildAt(3);
+////
+////                           }
+////                           cir = (Circularinfo)grid.getChildAt(1);
+////                           cir.SetNotOffline(true);
+////                           cir = (Circularinfo)grid.getChildAt(3);
+////                           cir.SetNotOffline(true);
+////                       }
+//
+//                        return false;
                     }
                 });
 //                circleview = (Circularinfo) rootView.findViewById(R.id.device2);
@@ -512,26 +535,18 @@ public class MainActivity extends FragmentActivity /*implements ActionBar.TabLis
                     public boolean onTouch(View v, MotionEvent event) {
                         Circularinfo cir;
                         GridLayout grid = (GridLayout)v.getParent();
-                        int number_of_children = grid.getChildCount();
-                        for (int index=0;index<number_of_children;index++)
-                        {
-                            cir = (Circularinfo)grid.getChildAt(index);
-                            cir.Selectdevice(false);
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        if(fragmentManager.getBackStackEntryCount()==0) {
+                            ResetDevicesToUnSelected(grid);
                         }
-                        ((Circularinfo)v).Selectdevice(true);
-                        FireMissilesDialogFragment misile = new FireMissilesDialogFragment();
+                        SetDeviceVisabiltyAndActionFlag((Circularinfo) v,2);
+                        // ((Circularinfo)v).Selectdevice(true);
+
 //
-                        Bundle bundi = new Bundle();
-                        ((MainActivity)getActivity()).device_selected = 1;
-                        ((MainActivity)getActivity()).Family_Devices[2].Is_selected_for_current_operation=true;
-                        bundi.putInt("device_selected",1);//mean kids pc
 
-//                       bundi.putSerializable("context",getActivity().getApplicationContext());
-//                       misile.setArguments(bundi);
-                        misile.app_context = getActivity().getApplicationContext();
-                        misile.setArguments(bundi);
+                        ((MainActivity)getActivity()).device_selected = 1;//probablly not relevant any more due to changes in the mechanism
 
-                        misile.show(getFragmentManager(), "test");
+                        StartDialogForActionsOnDevicesClicked();
 //                       if(misile.was_canceled)
 //                       {
 //                           for (int index=0;index<number_of_children;index++)
@@ -548,6 +563,44 @@ public class MainActivity extends FragmentActivity /*implements ActionBar.TabLis
 //                       }
 
                         return false;
+//                        Circularinfo cir;
+//                        GridLayout grid = (GridLayout)v.getParent();
+//                        int number_of_children = grid.getChildCount();
+//                        for (int index=0;index<number_of_children;index++)
+//                        {
+//                            cir = (Circularinfo)grid.getChildAt(index);
+//                            cir.Selectdevice(false);
+//                        }
+//                        ((Circularinfo)v).Selectdevice(true);
+//                        FireMissilesDialogFragment misile = new FireMissilesDialogFragment();
+////
+//                        Bundle bundi = new Bundle();
+//                        ((MainActivity)getActivity()).device_selected = 1;
+//                        ((MainActivity)getActivity()).Family_Devices[2].Is_selected_for_current_operation=true;
+//                        bundi.putInt("device_selected",1);//mean kids pc
+//
+////                       bundi.putSerializable("context",getActivity().getApplicationContext());
+////                       misile.setArguments(bundi);
+//                        misile.app_context = getActivity().getApplicationContext();
+//                        misile.setArguments(bundi);
+//
+//                        misile.show(getFragmentManager(), "test");
+////                       if(misile.was_canceled)
+////                       {
+////                           for (int index=0;index<number_of_children;index++)
+////                           {
+////                               cir = (Circularinfo)grid.getChildAt(index);
+////                               cir.SetNotOffline(false);
+//////                               cir = (Circularinfo)grid.getChildAt(3);
+////
+////                           }
+////                           cir = (Circularinfo)grid.getChildAt(1);
+////                           cir.SetNotOffline(true);
+////                           cir = (Circularinfo)grid.getChildAt(3);
+////                           cir.SetNotOffline(true);
+////                       }
+//
+//                        return false;
                     }
                 });
 
@@ -639,6 +692,47 @@ public class MainActivity extends FragmentActivity /*implements ActionBar.TabLis
             }
 
 
+        }
+
+        private void ResetDevicesToUnSelected(GridLayout grid) {
+            Circularinfo cir;
+            int number_of_children = grid.getChildCount();
+            for (int index=0;index<number_of_children;index++)
+            {
+                cir = (Circularinfo)grid.getChildAt(index);
+                cir.Selectdevice(false);
+            }
+        }
+
+        private void StartDialogForActionsOnDevicesClicked() {
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            if(fragmentManager.getBackStackEntryCount()==0)//incase this is the first time user touches the device
+            {
+                FireMissilesDialogFragment misile = new FireMissilesDialogFragment();
+                Bundle bundi = new Bundle();
+                bundi.putInt("device_selected", 0);
+//                       bundi.putSerializable("context",getActivity().getApplicationContext());
+//                       misile.setArguments(bundi);
+                misile.app_context = getActivity().getApplicationContext();
+                misile.setArguments(bundi);
+
+                misile.show(getFragmentManager(), "test");
+            }
+        }
+
+        private void SetDeviceVisabiltyAndActionFlag(Circularinfo v, int index) {
+            if(((MainActivity)getActivity()).Family_Devices[index].Is_selected_for_current_operation==true)
+            {
+                ((Circularinfo)v).Selectdevice(false);
+                ((MainActivity)getActivity()).Family_Devices[index].Is_selected_for_current_operation=false;
+
+            }
+            else
+            {
+                ((Circularinfo)v).Selectdevice(true);
+                ((MainActivity)getActivity()).Family_Devices[index].Is_selected_for_current_operation=true;
+
+            }
         }
     }
 

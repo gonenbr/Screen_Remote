@@ -40,6 +40,14 @@ public class Device  implements Parcelable{
 
     }
 
+    public Device(Device d)
+    {
+        Is_on=d.Is_on;
+        Is_available=d.Is_available;
+        Is_selected_for_current_operation= d.Is_selected_for_current_operation;
+        Device_name = d.Device_name;
+    }
+
     public Device(Parcel source)
     {
         Is_on= source.readByte() !=0;

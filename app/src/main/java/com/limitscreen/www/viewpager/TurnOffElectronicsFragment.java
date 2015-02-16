@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 
+import java.util.Arrays;
+
 /**
  * Created by gonen on 27/11/14.
  */
@@ -44,22 +46,53 @@ public class TurnOffElectronicsFragment extends Fragment {
             }
         });
         button_apply = (Button)rootView.findViewById(R.id.button_apply);
-        button_apply.setOnTouchListener(new View.OnTouchListener() {
+        button_apply.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                getFragmentManager().popBackStack();
+            public void onClick(View v) {
                 try {
 //                                    Communication.SendCommandTurnOff();
+
+                    //Device[] devices_copy =  Arrays.copyOf(((MainActivity) getActivity()).Family_Devices,((MainActivity) getActivity()).Family_Devices.length);
+                    Device[] devices_copy =  new Device[((MainActivity)getActivity()).Family_Devices.length];
+                    for(int index=0;index<devices_copy.length;index++)
+                    {
+                        devices_copy[index] = new Device(((MainActivity)getActivity()).Family_Devices[index]);
+                    }
                     DownloadWebpageTask task = new DownloadWebpageTask(getActivity().getApplicationContext());
+                    if(!IsDeviceWithAction(devices_copy))
+                    {
+                        getFragmentManager().popBackStack();
+                        return;
+                    }
                     //task.execute(Integer.toString(((MainActivity)getActivity()).device_selected),text_turn_off_value.getText().toString(),"1",text_message.getText().toString());// the one is for turn off action
-                    task.execute(Integer.toString(((MainActivity)getActivity()).device_selected),text_turn_off_value.getText().toString(),"1",text_message_to_send_clearable.getText().toString());// the one is for turn off action
+                    task.execute(Integer.toString(((MainActivity)getActivity()).device_selected),text_turn_off_value.getText().toString(),"1",text_message_to_send_clearable.getText().toString(),devices_copy);// the one is for turn off action
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                return false;
+                getFragmentManager().popBackStack();
+                //return false;
+
             }
         });
+//        button_apply.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//
+//
+//                try {
+////                                    Communication.SendCommandTurnOff();
+//
+//                    Device[] devices_copy =  Arrays.copyOf(((MainActivity) getActivity()).Family_Devices,((MainActivity) getActivity()).Family_Devices.length);
+//                    DownloadWebpageTask task = new DownloadWebpageTask(getActivity().getApplicationContext());
+//                    //task.execute(Integer.toString(((MainActivity)getActivity()).device_selected),text_turn_off_value.getText().toString(),"1",text_message.getText().toString());// the one is for turn off action
+//                    task.execute(Integer.toString(((MainActivity)getActivity()).device_selected),text_turn_off_value.getText().toString(),"1",text_message_to_send_clearable.getText().toString(),devices_copy);// the one is for turn off action
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                getFragmentManager().popBackStack();
+//                return false;
+//            }
+//        });
         seek_bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -134,5 +167,14 @@ public class TurnOffElectronicsFragment extends Fragment {
         });
         this.text_message.selectAll();
         return rootView;
+    }
+
+    private boolean IsDeviceWithAction(Device[] devices_copy) {
+        for(Device device:devices_copy)
+        {
+            if(device.Is_selected_for_current_operation)
+                return true;
+        }
+        return false;
     }
 }

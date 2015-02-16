@@ -44,22 +44,49 @@ public class AddExtraTimeFragment extends Fragment {
             }
         });
         button_apply = (Button)rootView.findViewById(R.id.button_apply);
-        button_apply.setOnTouchListener(new View.OnTouchListener() {
+        button_apply.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
+            public void onClick(View v) {
 
-                getFragmentManager().popBackStack();
                 try {
+                    Device[] devices_copy =  new Device[((MainActivity)getActivity()).Family_Devices.length];
+                    for(int index=0;index<devices_copy.length;index++)
+                    {
+                        devices_copy[index] = new Device(((MainActivity)getActivity()).Family_Devices[index]);
+                    }
+                    if(!IsDeviceWithAction(devices_copy))
+                    {
+                        getFragmentManager().popBackStack();
+                        return;
+                    }
 //                                    Communication.SendCommandTurnOff();
                     DownloadWebpageTask task = new DownloadWebpageTask(getActivity().getApplicationContext());
 //                    task.execute(Integer.toString(((MainActivity)getActivity()).device_selected),text_turn_off_value.getText().toString(),"2",text_message.getText().toString());//the 2 is for add more time action
-                    task.execute(Integer.toString(((MainActivity)getActivity()).device_selected),text_turn_off_value.getText().toString(),"2",text_message_to_send_clearable.getText().toString());//the 2 is for add more time action
+                    task.execute(Integer.toString(((MainActivity)getActivity()).device_selected),text_turn_off_value.getText().toString(),"2",text_message_to_send_clearable.getText().toString(),devices_copy);//the 2 is for add more time action
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                return false;
+                getFragmentManager().popBackStack();
+
             }
         });
+
+//        button_apply.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//
+//                getFragmentManager().popBackStack();
+//                try {
+////                                    Communication.SendCommandTurnOff();
+//                    DownloadWebpageTask task = new DownloadWebpageTask(getActivity().getApplicationContext());
+////                    task.execute(Integer.toString(((MainActivity)getActivity()).device_selected),text_turn_off_value.getText().toString(),"2",text_message.getText().toString());//the 2 is for add more time action
+//                    task.execute(Integer.toString(((MainActivity)getActivity()).device_selected),text_turn_off_value.getText().toString(),"2",text_message_to_send_clearable.getText().toString());//the 2 is for add more time action
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                return false;
+//            }
+//        });
         seek_bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -133,5 +160,13 @@ public class AddExtraTimeFragment extends Fragment {
             }
         });
         return rootView;
+    }
+    private boolean IsDeviceWithAction(Device[] devices_copy) {
+        for(Device device:devices_copy)
+        {
+            if(device.Is_selected_for_current_operation)
+                return true;
+        }
+        return false;
     }
 }

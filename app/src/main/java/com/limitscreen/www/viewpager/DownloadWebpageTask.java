@@ -10,7 +10,7 @@ import android.widget.Toast;
 /**
  * Created by gonen on 28/11/14.
  */
-public class DownloadWebpageTask extends AsyncTask<String, Void, String> {
+public class DownloadWebpageTask extends AsyncTask<Object, Void, String> {
     public Context App_context;
     public DownloadWebpageTask(Context app_context)
     {
@@ -20,18 +20,32 @@ public class DownloadWebpageTask extends AsyncTask<String, Void, String> {
     public int device_number;
     public int number_of_minutes;
     public String text_to_send;
+    public Device[] devices;
+    public String output_devices_names_for_show="";
     //public ProgressDialog prg;
 
+
+
+
     @Override
-    protected String doInBackground(String... params) {
-        String result;
+    protected String doInBackground(Object... params) {
+        String result=null;
         //prg = ProgressDialog.show(App_context,"","Loading...");
         try {
-            device_number = Integer.parseInt(params[0]);
-            number_of_minutes = Integer.parseInt(params[1]);
-            action_type = Integer.parseInt(params[2]);
-            text_to_send = params[3];
-            result = Communication.SendCommandTurnOff(device_number,number_of_minutes, action_type,text_to_send,App_context);//param 2 is action type
+            device_number = Integer.parseInt((String)params[0]);
+            number_of_minutes = Integer.parseInt((String)params[1]);
+            action_type = Integer.parseInt((String)params[2]);
+            text_to_send = (String)params[3];
+            devices = (Device[])params[4];
+            for(Device device:devices)
+            {
+                if(device.Is_selected_for_current_operation)//a device selected
+                {
+                    output_devices_names_for_show+=device.Device_name+", ";
+                    //result = Communication.SendCommandTurnOff(device_number, number_of_minutes, action_type, text_to_send, App_context);//param 2 is action type
+                    result = Communication.SendCommandTurnOffWithString(device.Device_name,device_number, number_of_minutes, action_type, text_to_send, App_context);//param 2 is action type
+                }
+            }
 //            return downloadUrl(urls[0])
         } catch (Exception e) {
             return "Unable to retrieve web page. URL may be invalid.";
@@ -56,23 +70,26 @@ public class DownloadWebpageTask extends AsyncTask<String, Void, String> {
        Toast toast;
         if(action_type==1)//turn off
         {
-            if(device_number==0)//main TV
-            {
-                toast = Toast.makeText(App_context, "Main TV, will turn off in " + String.valueOf(number_of_minutes) + " minutes", Toast.LENGTH_SHORT);
-            }
-            else {
-                toast = Toast.makeText(App_context, "Kids PC, will turn off in " + String.valueOf(number_of_minutes) + " minutes", Toast.LENGTH_SHORT);
-            }
+            toast = Toast.makeText(App_context, output_devices_names_for_show+ "will turn off in " + String.valueOf(number_of_minutes) + " minutes", Toast.LENGTH_SHORT);
+            //((MainActivity)App_context).Family_Devices
+//            if(device_number==0)//main TV
+//            {
+//                toast = Toast.makeText(App_context, "Main TV, will turn off in " + String.valueOf(number_of_minutes) + " minutes", Toast.LENGTH_SHORT);
+//            }
+//            else {
+//                toast = Toast.makeText(App_context, "Kids PC, will turn off in " + String.valueOf(number_of_minutes) + " minutes", Toast.LENGTH_SHORT);
+//            }
         }
         else
         {//probabbly if added time
-            if(device_number==0)//main TV
-            {
-                toast = Toast.makeText(App_context, String.valueOf(number_of_minutes)+" minutes, were added to "+ "Main TV",  Toast.LENGTH_SHORT);
-            }
-            else {
-                toast = Toast.makeText(App_context, String.valueOf(number_of_minutes)+" minutes, were added to "+ "Kids PC",  Toast.LENGTH_SHORT);
-            }
+            toast = Toast.makeText(App_context, String.valueOf(number_of_minutes)+" minutes, were added to "+ output_devices_names_for_show.substring(0,(output_devices_names_for_show.length()-1)-1),  Toast.LENGTH_SHORT);
+//            if(device_number==0)//main TV
+//            {
+//                toast = Toast.makeText(App_context, String.valueOf(number_of_minutes)+" minutes, were added to "+ "Main TV",  Toast.LENGTH_SHORT);
+//            }
+//            else {
+//                toast = Toast.makeText(App_context, String.valueOf(number_of_minutes)+" minutes, were added to "+ "Kids PC",  Toast.LENGTH_SHORT);
+//            }
            // Toast toast = Toast.makeText(App_context,"Your changes were applied to the selected device", Toast.LENGTH_SHORT);
 
         }

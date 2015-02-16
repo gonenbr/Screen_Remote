@@ -41,6 +41,8 @@ public class FireMissilesDialogFragment extends DialogFragment {
             ((Circularinfo)root_view.getChildAt(1)).SetNotOffline(true);
             ((Circularinfo)root_view.getChildAt(2)).SetNotOffline(true);
 
+            act.InitDevicesData();//this will init the devices flags so the action flag will be reset.
+
 
             return;
         }
@@ -59,7 +61,7 @@ public class FireMissilesDialogFragment extends DialogFragment {
                 FragmentManager fragmentManager;
                 android.support.v4.app.FragmentTransaction fragmentTransaction;
                 switch (which) {
-                    case 0:
+                    case 0://shut down
                         fragmentManager = getFragmentManager();
                         fragmentTransaction = fragmentManager.beginTransaction();
                         TurnOffElectronicsFragment fgm = new TurnOffElectronicsFragment();
