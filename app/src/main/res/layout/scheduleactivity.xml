@@ -2,7 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="fill_parent">
-
+    <LinearLayout
+        android:id="@+id/progress_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone">
+        <ProgressBar
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:indeterminateDrawable="@drawable/spinner_48_outer_ho"
+            android:layout_gravity="center"></ProgressBar>
+        </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"

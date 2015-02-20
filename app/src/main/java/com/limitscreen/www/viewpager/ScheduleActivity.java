@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.DialogFragment;
@@ -15,6 +16,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,9 +36,10 @@ import java.util.Map;
 public class ScheduleActivity extends FragmentActivity implements MultiDeviceDialogFragement.NoticeDialogListener{
     public int device_selected=0;
     public String device_selected_string=null;
-    public ProgressDialog prg;
+    //public ProgressDialog prg;
     public Context App_context;
     public Device[] devices;
+    public LinearLayout progress_layout=null;
 
     //public Map<String,Integer> devices_map = new HashMap<>();
 
@@ -83,7 +86,9 @@ public class ScheduleActivity extends FragmentActivity implements MultiDeviceDia
 
 //        getActionBar().setTitle("Screen Schedule");
         Button apply = (Button)findViewById(R.id.buttonapplyschedule);
+        progress_layout = (LinearLayout)findViewById(R.id.progress_layout);
         Button cancel = (Button)findViewById(R.id.buttoncancelschedule);
+
         Button apply_to_all = (Button)findViewById(R.id.buttonApplytoallDevices);
         apply.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -239,21 +244,22 @@ public class ScheduleActivity extends FragmentActivity implements MultiDeviceDia
     @Override
     protected void onStart(){
         super.onStart();
-        this.prg = ProgressDialog.show(this, "", "Loading...");
-        String result;
-        try {
-
-            result = Communication.GetScheduleData(device_selected);
-        }
-        catch (Exception e)
-        {
-            return;
-
-        }
-        finally {
-            this.prg.dismiss();
-        }
-        displayCurrentSchedule(result);
+        //this.prg = ProgressDialog.show(this, "", "Loading...");
+        new GetScheduleTask().execute();
+//        String result;
+//        try {
+//
+//            result = Communication.GetScheduleData(device_selected);
+//        }
+//        catch (Exception e)
+//        {
+//            return;
+//
+//        }
+//        finally {
+//           // this.prg.dismiss();
+//        }
+//        displayCurrentSchedule(result);
 
     }
 
@@ -261,20 +267,20 @@ public class ScheduleActivity extends FragmentActivity implements MultiDeviceDia
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        String result;
-        try {
-
-            result = Communication.GetScheduleData(device_selected);
-        }
-        catch (Exception e)
-        {
-            return;
-
-        }
-        finally {
-            //this.prg.dismiss();
-        }
-        displayCurrentSchedule(result);
+//        String result;
+//        try {
+//
+//            result = Communication.GetScheduleData(device_selected);
+//        }
+//        catch (Exception e)
+//        {
+//            return;
+//
+//        }
+//        finally {
+//            //this.prg.dismiss();
+//        }
+//        displayCurrentSchedule(result);
 
     }
 
@@ -397,4 +403,50 @@ public class ScheduleActivity extends FragmentActivity implements MultiDeviceDia
     }
 
 
+    public class GetScheduleTask extends AsyncTask<Object,Void,String>
+    {
+        @Override
+        protected String doInBackground(Object... params) {
+            String result;
+            try {
+
+                result = Communication.GetScheduleData(device_selected);
+            }
+            catch (Exception e)
+            {
+                return null;
+
+            }
+            finally {
+                // this.prg.dismiss();
+            }
+           // displayCurrentSchedule(result);
+
+
+            return result;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progress_layout.setVisibility(View.VISIBLE);
+
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            super.onPostExecute(result);
+            if(result==null)
+                return;
+            displayCurrentSchedule(result);
+            progress_layout.setVisibility(View.GONE);
+        }
+    }
+
+
+
 }
+
+
+
