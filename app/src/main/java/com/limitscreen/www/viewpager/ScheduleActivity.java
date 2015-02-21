@@ -33,7 +33,7 @@ import java.util.Map;
 /**
  * Created by gonen on 01/12/14.
  */
-public class ScheduleActivity extends FragmentActivity implements MultiDeviceDialogFragement.NoticeDialogListener{
+public class ScheduleActivity extends FragmentActivity implements MultiDeviceDialogFragement.NoticeDialogListener,RecommendedScheduleDialogFragement.NoticeDialogListener{
     public int device_selected=0;
     public String device_selected_string=null;
     //public ProgressDialog prg;
@@ -45,11 +45,31 @@ public class ScheduleActivity extends FragmentActivity implements MultiDeviceDia
 
 
     @Override
+    public void onRecommendedDialogPositiveClick(android.app.DialogFragment dialog) {
+        RecommendedScheduleDialogFragement fragi = (RecommendedScheduleDialogFragement)dialog;
+        if(fragi.mSelectedItems.isEmpty())
+            return;
+        this.preFetchDataAndSend(fragi.mSelectedItems,true);
+        Toast toast;
+        toast = Toast.makeText(App_context, "Recommended schedule was set", Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL,0,-350);
+        toast.show();
+        finish();
+        //new GetScheduleTask().execute();
+
+    }
+
+    @Override
+    public void onRecommendedDialogNegativeClick(android.app.DialogFragment dialog) {
+
+    }
+
+    @Override
     public void onDialogPositiveClick(android.app.DialogFragment dialog) {
         MultiDeviceDialogFragement fragi = (MultiDeviceDialogFragement)dialog;
         if(fragi.mSelectedItems.isEmpty())
             return;
-        this.preFetchDataAndSend(fragi.mSelectedItems);
+        this.preFetchDataAndSend(fragi.mSelectedItems,false);
         Toast toast;
         toast = Toast.makeText(App_context, "Schedule was set", Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL,0,-350);
@@ -90,12 +110,13 @@ public class ScheduleActivity extends FragmentActivity implements MultiDeviceDia
         Button cancel = (Button)findViewById(R.id.buttoncancelschedule);
 
         Button apply_to_all = (Button)findViewById(R.id.buttonApplytoallDevices);
+        Button set_recommended_schedule = (Button)findViewById(R.id.button_set_recommended_schedule);
         apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ArrayList<String> list = new ArrayList<String>();
                 list.add(device_selected_string);
-                preFetchDataAndSend(list);
+                preFetchDataAndSend(list,false);
                 Toast toast;
                 toast = Toast.makeText(App_context, "Schedule was set", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL,0,-350);
@@ -124,6 +145,17 @@ public class ScheduleActivity extends FragmentActivity implements MultiDeviceDia
                 num+=1;
 
 
+
+            }
+        });
+        set_recommended_schedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RecommendedScheduleDialogFragement recommended_schedule_set = new RecommendedScheduleDialogFragement();
+                //MultiDeviceDialogFragement.brandAlertDialog((AlertDialog) multi_device_select.di);
+
+
+                recommended_schedule_set.show(getFragmentManager(), "Set recommended schedule on devices");
 
             }
         });
@@ -159,33 +191,70 @@ public class ScheduleActivity extends FragmentActivity implements MultiDeviceDia
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-    public void preFetchDataAndSend(ArrayList<String> list_of_devices)
+
+
+
+
+    public void preFetchDataAndSend(ArrayList<String> list_of_devices,boolean is_recommended_schedule_send)
     {
         JSONObject jsn = new JSONObject();
         String d2s,d2e,d3s,d3e,d4s,d4e,d5s,d5e,d6s,d6e,d7s,d7e,d1s,d1e,d1q,d2q,d3q,d4q,d5q,d6q,d7q;
-        d1s=(String)((TextView)findViewById(R.id.d1s)).getText().toString();
-        d2s =(String)((TextView)findViewById(R.id.d2s)).getText().toString();
-        d3s=(String)((TextView)findViewById(R.id.d3s)).getText().toString();
-        d4s=(String)((TextView)findViewById(R.id.d4s)).getText().toString();
-        d5s=(String)((TextView)findViewById(R.id.d5s)).getText().toString();
-        d6s=(String)((TextView)findViewById(R.id.d6s)).getText().toString();
-        d7s=(String)((TextView)findViewById(R.id.d7s)).getText().toString();
+        if(is_recommended_schedule_send)
+        {
+            d1s="12:00 PM";
+            d2s ="12:00 PM";
+            d3s="12:00 PM";
+            d4s="12:00 PM";
+            d5s="12:00 PM";
+            d6s="12:00 PM";
+            d7s="12:00 PM";
 
-        d1e=(String)((TextView)findViewById(R.id.d1e)).getText().toString();
-        d2e=(String)((TextView)findViewById(R.id.d2e)).getText().toString();
-        d3e=(String)((TextView)findViewById(R.id.d3e)).getText().toString();
-        d4e=(String)((TextView)findViewById(R.id.d4e)).getText().toString();
-        d5e=(String)((TextView)findViewById(R.id.d5e)).getText().toString();
-        d6e=(String)((TextView)findViewById(R.id.d6e)).getText().toString();
-        d7e=(String)((TextView)findViewById(R.id.d7e)).getText().toString();
+            d1e="16:00 PM";
+            d2e="16:00 PM";
+            d3e="16:00 PM";
+            d4e="16:00 PM";
+            d5e="16:00 PM";
+            d6e="16:00 PM";
+            d7e="16:00 PM";
 
-        d1q=(String)((TextView)findViewById(R.id.d1q)).getText().toString();
-        d2q=(String)((TextView)findViewById(R.id.d2q)).getText().toString();
-        d3q=(String)((TextView)findViewById(R.id.d3q)).getText().toString();
-        d4q=(String)((TextView)findViewById(R.id.d4q)).getText().toString();
-        d5q=(String)((TextView)findViewById(R.id.d5q)).getText().toString();
-        d6q=(String)((TextView)findViewById(R.id.d6q)).getText().toString();
-        d7q=(String)((TextView)findViewById(R.id.d7q)).getText().toString();
+            d1q="1";
+            d2q="1";
+            d3q="1";
+            d4q="1";
+            d5q="1";
+            d6q="1";
+            d7q="1";
+
+        }
+        else
+        {
+            d1s=(String)((TextView)findViewById(R.id.d1s)).getText().toString();
+            d2s =(String)((TextView)findViewById(R.id.d2s)).getText().toString();
+            d3s=(String)((TextView)findViewById(R.id.d3s)).getText().toString();
+            d4s=(String)((TextView)findViewById(R.id.d4s)).getText().toString();
+            d5s=(String)((TextView)findViewById(R.id.d5s)).getText().toString();
+            d6s=(String)((TextView)findViewById(R.id.d6s)).getText().toString();
+            d7s=(String)((TextView)findViewById(R.id.d7s)).getText().toString();
+
+            d1e=(String)((TextView)findViewById(R.id.d1e)).getText().toString();
+            d2e=(String)((TextView)findViewById(R.id.d2e)).getText().toString();
+            d3e=(String)((TextView)findViewById(R.id.d3e)).getText().toString();
+            d4e=(String)((TextView)findViewById(R.id.d4e)).getText().toString();
+            d5e=(String)((TextView)findViewById(R.id.d5e)).getText().toString();
+            d6e=(String)((TextView)findViewById(R.id.d6e)).getText().toString();
+            d7e=(String)((TextView)findViewById(R.id.d7e)).getText().toString();
+
+            d1q=(String)((TextView)findViewById(R.id.d1q)).getText().toString();
+            d2q=(String)((TextView)findViewById(R.id.d2q)).getText().toString();
+            d3q=(String)((TextView)findViewById(R.id.d3q)).getText().toString();
+            d4q=(String)((TextView)findViewById(R.id.d4q)).getText().toString();
+            d5q=(String)((TextView)findViewById(R.id.d5q)).getText().toString();
+            d6q=(String)((TextView)findViewById(R.id.d6q)).getText().toString();
+            d7q=(String)((TextView)findViewById(R.id.d7q)).getText().toString();
+
+        }
+
+
         try {
             jsn.put("d1s", convertToMilTime(d1s));
             jsn.put("d2s", convertToMilTime(d2s));
@@ -443,6 +512,7 @@ public class ScheduleActivity extends FragmentActivity implements MultiDeviceDia
             progress_layout.setVisibility(View.GONE);
         }
     }
+
 
 
 
